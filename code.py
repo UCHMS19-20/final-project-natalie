@@ -43,27 +43,40 @@ red = (255,0,0)
 green = (0,255,0)
 purple = (255,0,255)
 
-# chip_color = input('''Choose your color: blue, red, green, yellow
-# ''')
+player_num = input('''How many people are playing? 2 to 4 players
+''')
 
-# if chip_color is blue:
-x = 0
-y = 0
-chip = pygame.draw.rect(win, blue, (x,y,5,5))
+if player_num is 2:
+    x = 0
+    y = 0
+    chip = pygame.draw.rect(win, blue, (x,y,5,5))
+    x = 10
+    y = 0
+    chip = pygame.draw.rect(win, red, (x,y,5,5))
 
-# if chip_color is red:
-x = 10
-y = 0
-chip = pygame.draw.rect(win, red, (x,y,5,5))
+if player_num is 3:
+    x = 0
+    y = 0
+    chip = pygame.draw.rect(win, blue, (x,y,5,5))
+    x = 10
+    y = 0
+    chip = pygame.draw.rect(win, red, (x,y,5,5))
+    x = 0
+    y = 10
+    chip = pygame.draw.rect(win, green, (x,y,5,5))
 
-# if chip_color is green:
-x = 0
-y = 10
-chip = pygame.draw.rect(win, green, (x,y,5,5))
-
-# if chip_color is purple:
-x = 10
-y = 10
-chip = pygame.draw.rect(win, purple, (x,y,5,5))
+if player_num is 4:
+    x = 0
+    y = 0
+    chip = pygame.draw.rect(win, blue, (x,y,5,5))
+    x = 10
+    y = 0
+    chip = pygame.draw.rect(win, red, (x,y,5,5))
+    x = 0
+    y = 10
+    chip = pygame.draw.rect(win, green, (x,y,5,5))
+    x = 10
+    y = 10
+    chip = pygame.draw.rect(win, purple, (x,y,5,5))
 
 pygame.display.flip()
