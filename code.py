@@ -11,25 +11,28 @@ width = 20
 height = 20
 margin = 5
 
-x = 0
+x = -25
 y = 0
-
-pygame.draw.rect(win, white, (x,y,width,height))
-pygame.display.flip()
-
 for n in range(10):
     x += 25
     pygame.draw.rect(win, white, (x,y,width,height))
-    pygame.display.flip()
+
+x = -25
+y = 225
+for n in range(10):
+    x += 25
+    pygame.draw.rect(win, white, (x,y,width,height))
 
 x = 0
+y = -25
 for n in range(10):
     y += 25
     pygame.draw.rect(win, white, (x,y,width,height))
-    pygame.display.flip()
 
+x = 225
+y = -25
 for n in range(10):
-    x = 225
     y += 25
     pygame.draw.rect(win, white, (x,y,width,height))
-    pygame.display.flip()
+
+pygame.display.flip()
