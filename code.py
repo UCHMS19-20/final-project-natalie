@@ -1,6 +1,10 @@
 import pygame
+import sys
 # initiate pygame
 pygame.init()
+
+# get all fonts
+all_fonts = pygame.font.get_fonts()
 
 # colors
 white = (255,255,255)
@@ -75,51 +79,63 @@ for n in range(3):
     y += 75
     pygame.draw.rect(win, gold, (x,y,width,height))
 
+# print title of game
+font = pygame.font.SysFont('Arial', 50)
+text1 = font.render('Gold', True, gold)
+text2 = font.render('Rush', True, gold)
+win.blit(text1, (65,60))
+win.blit(text2, (65,120))
+
 # update display
 pygame.display.flip()
 
-# # function for number of players
-# def player_num(num):
-#     if num is 2:
-#         x = 0
-#         y = 0
-#         chip = pygame.draw.rect(win, blue, (x,y,5,5))
-#         x = 10
-#         y = 0
-#         chip = pygame.draw.rect(win, red, (x,y,5,5))
-#     if num is 3:
-#         x = 0
-#         y = 0
-#         chip = pygame.draw.rect(win, blue, (x,y,5,5))
-#         x = 10
-#         y = 0
-#         chip = pygame.draw.rect(win, red, (x,y,5,5))
-#         x = 0
-#         y = 10
-#         chip = pygame.draw.rect(win, green, (x,y,5,5))
-#     if num is 4:
-#         x = 0
-#         y = 0
-#         chip = pygame.draw.rect(win, blue, (x,y,5,5))
-#         x = 10
-#         y = 0
-#         chip = pygame.draw.rect(win, red, (x,y,5,5))
-#         x = 0
-#         y = 10
-#         chip = pygame.draw.rect(win, green, (x,y,5,5))
-#         x = 10
-#         y = 10
-#         chip = pygame.draw.rect(win, purple, (x,y,5,5))
-#     return
+# function for number of players
+def player_num(num):
+    if num is 2:
+        x = 0
+        y = 0
+        chip = pygame.draw.rect(win, blue, (x,y,5,5))
+        x = 10
+        y = 0
+        chip = pygame.draw.rect(win, red, (x,y,5,5))
+    if num is 3:
+        x = 0
+        y = 0
+        chip = pygame.draw.rect(win, blue, (x,y,5,5))
+        x = 10
+        y = 0
+        chip = pygame.draw.rect(win, red, (x,y,5,5))
+        x = 0
+        y = 10
+        chip = pygame.draw.rect(win, green, (x,y,5,5))
+    if num is 4:
+        x = 0
+        y = 0
+        chip = pygame.draw.rect(win, blue, (x,y,5,5))
+        x = 10
+        y = 0
+        chip = pygame.draw.rect(win, red, (x,y,5,5))
+        x = 0
+        y = 10
+        chip = pygame.draw.rect(win, green, (x,y,5,5))
+        x = 10
+        y = 10
+        chip = pygame.draw.rect(win, purple, (x,y,5,5))
+    return
 
-# # get number of players and display chips accordingly
-# player_num(input('''How many people are playing? 2 to 4 players
-#     '''))
+# get number of players and display chips accordingly
+player_num(input('''How many people are playing? 2 to 4 players
+    '''))
 
-# # update display
-# pygame.display.flip()
+# update display
+pygame.display.flip()
 
 # # main loop
-# # while True:
-# #     for event in pygame.event.get():
-# #         if event.type == pygame.QUIT:
+# while True:
+#     # do something for each event in the event queue (list of things that happen)
+#     for event in pygame.event.get():
+#         # Check to see if the current event is a QUIT event
+#         if event.type == pygame.QUIT:
+#             # If so, exit the program
+#             sys.exit()
+#         pygame.display.flip()
