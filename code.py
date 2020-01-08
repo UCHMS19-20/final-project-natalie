@@ -89,49 +89,60 @@ win.blit(text2, (65,120))
 # update display
 pygame.display.flip()
 
+# "erases" title
+pygame.time.delay(3000)
+win.fill (black,(50,50,150,150))
+
+# update display
+pygame.display.flip()
+
 # function for number of players
 def player_num():
+    # asks user for number of players
     num = int(input('''How many players are playing? 2 to 4 players
     '''))
+    # validates user answer
     while num < 2 or num > 4:
-        num = int(input('You need 2 to 4 players to play this game. Try again'))
+        num = int(input('''You need 2 to 4 players to play this game. Try again
+        '''))
+    # 2 players
     if num is 2:
         x = 0
         y = 0
-        chip = pygame.draw.rect(win, blue, (x,y,5,5))
+        pygame.draw.rect(win, blue, (x,y,5,5))
         x = 10
         y = 0
-        chip = pygame.draw.rect(win, red, (x,y,5,5))
+        pygame.draw.rect(win, red, (x,y,5,5))
+    # 3 players
     if num is 3:
         x = 0
         y = 0
-        chip = pygame.draw.rect(win, blue, (x,y,5,5))
+        pygame.draw.rect(win, blue, (x,y,5,5))
         x = 10
         y = 0
-        chip = pygame.draw.rect(win, red, (x,y,5,5))
+        pygame.draw.rect(win, red, (x,y,5,5))
         x = 0
         y = 10
-        chip = pygame.draw.rect(win, green, (x,y,5,5))
+        pygame.draw.rect(win, green, (x,y,5,5))
     if num is 4:
         x = 0
         y = 0
-        chip = pygame.draw.rect(win, blue, (x,y,5,5))
+        pygame.draw.rect(win, blue, (x,y,5,5))
         x = 10
         y = 0
-        chip = pygame.draw.rect(win, red, (x,y,5,5))
+        pygame.draw.rect(win, red, (x,y,5,5))
         x = 0
         y = 10
-        chip = pygame.draw.rect(win, green, (x,y,5,5))
+        pygame.draw.rect(win, green, (x,y,5,5))
         x = 10
         y = 10
-        chip = pygame.draw.rect(win, purple, (x,y,5,5))
+        pygame.draw.rect(win, purple, (x,y,5,5))
+    # update display
+    pygame.display.flip()
     return
 
 # get number of players and display chips accordingly
 player_num()
-
-# update display
-pygame.display.flip()
 
 # # main loop
 # while True:
