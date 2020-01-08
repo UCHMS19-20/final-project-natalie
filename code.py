@@ -1,5 +1,6 @@
 import pygame
 import sys
+import random as randint
 # initiate pygame
 pygame.init()
 
@@ -105,51 +106,60 @@ def player_num():
     while num < 2 or num > 4:
         num = int(input('''You need 2 to 4 players to play this game. Try again
         '''))
-    # 2 players
-    if num is 2:
-        x = 0
-        y = 0
-        pygame.draw.rect(win, blue, (x,y,5,5))
-        x = 10
-        y = 0
-        pygame.draw.rect(win, red, (x,y,5,5))
-    # 3 players
-    if num is 3:
-        x = 0
-        y = 0
-        pygame.draw.rect(win, blue, (x,y,5,5))
-        x = 10
-        y = 0
-        pygame.draw.rect(win, red, (x,y,5,5))
-        x = 0
-        y = 10
-        pygame.draw.rect(win, green, (x,y,5,5))
-    if num is 4:
-        x = 0
-        y = 0
-        pygame.draw.rect(win, blue, (x,y,5,5))
-        x = 10
-        y = 0
-        pygame.draw.rect(win, red, (x,y,5,5))
-        x = 0
-        y = 10
-        pygame.draw.rect(win, green, (x,y,5,5))
-        x = 10
-        y = 10
-        pygame.draw.rect(win, purple, (x,y,5,5))
-    # update display
-    pygame.display.flip()
-    return
+    return num
 
-# get number of players and display chips accordingly
+# get number of players
 player_num()
 
-# # main loop
-# while True:
-#     # do something for each event in the event queue (list of things that happen)
-#     for event in pygame.event.get():
-#         # Check to see if the current event is a QUIT event
-#         if event.type == pygame.QUIT:
-#             # If so, exit the program
-#             sys.exit()
-#         pygame.display.flip()
+# display chips for 2 players
+if num is 2:
+    x = 0
+    y = 0
+    player_1 = pygame.draw.rect(win, blue, (x,y,5,5))
+    x = 10
+    y = 0
+    player_2 = pygame.draw.rect(win, red, (x,y,5,5))
+# display chips for 3 players
+if num is 3:
+    x = 0
+    y = 0
+    player_1 = pygame.draw.rect(win, blue, (x,y,5,5))
+    x = 10
+    y = 0
+    player_2 = pygame.draw.rect(win, red, (x,y,5,5))
+    x = 0
+    y = 10
+    player_3 = pygame.draw.rect(win, green, (x,y,5,5))
+# display chips for 4 players
+if num is 4:
+    x = 0
+    y = 0
+    player_1 = pygame.draw.rect(win, blue, (x,y,5,5))
+    x = 10
+    y = 0
+    player_2 = pygame.draw.rect(win, red, (x,y,5,5))
+    x = 0
+    y = 10
+    player_3 = pygame.draw.rect(win, green, (x,y,5,5))
+    x = 10
+    y = 10
+    player_4 = pygame.draw.rect(win, purple, (x,y,5,5))
+
+# main loop
+while True:
+    # do something for each event in the event queue
+    for event in pygame.event.get():
+        # check to see if the current event is a QUIT event
+        if event.type == pygame.QUIT:
+            # exit the program
+            sys.exit()
+    keys = pygame.key.get_pressed
+    print("It's player 1's turn. Press enter to roll the die")
+    # random number between 1 and 6
+    dice = randint(1,6)
+    print(f'You rolled a {dice}')
+
+
+
+    # update display
+    pygame.display.flip()
