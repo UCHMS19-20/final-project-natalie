@@ -90,7 +90,11 @@ win.blit(text2, (65,120))
 pygame.display.flip()
 
 # function for number of players
-def player_num(num):
+def player_num():
+    num = int(input('''How many players are playing? 2 to 4 players
+    '''))
+    while num < 2 or num > 4:
+        num = int(input('You need 2 to 4 players to play this game. Try again'))
     if num is 2:
         x = 0
         y = 0
@@ -124,8 +128,7 @@ def player_num(num):
     return
 
 # get number of players and display chips accordingly
-player_num(input('''How many people are playing? 2 to 4 players
-    '''))
+player_num()
 
 # update display
 pygame.display.flip()
