@@ -1,6 +1,6 @@
 import pygame
 import sys
-import random as randint
+import random
 # initiate pygame
 pygame.init()
 
@@ -90,12 +90,37 @@ win.blit(text2, (65,120))
 # update display
 pygame.display.flip()
 
-# "erases" title
+# wait 3 seconds
 pygame.time.delay(3000)
+# "erases" title
 win.fill (black,(50,50,150,150))
 
 # update display
 pygame.display.flip()
+
+# player 1
+p1 = {
+    'x': 0,
+    'y': 0
+}
+
+# player 2
+p2 = {
+    'x': 10,
+    'y': 0
+}
+
+# player 3
+p3 = {
+    'x': 0,
+    'y': 10
+}
+
+# player 4
+p4 = {
+    'x': 10,
+    'y': 10
+}
 
 # function for number of players
 def player_num():
@@ -109,41 +134,26 @@ def player_num():
     return num
 
 # get number of players
-player_num()
+num = player_num()
 
 # display chips for 2 players
 if num is 2:
-    x = 0
-    y = 0
-    player_1 = pygame.draw.rect(win, blue, (x,y,5,5))
-    x = 10
-    y = 0
-    player_2 = pygame.draw.rect(win, red, (x,y,5,5))
+    pygame.draw.rect(win, blue, (p1["x"],p1["y"],5,5))
+    pygame.draw.rect(win, red, (p2["x"],p2["y"],5,5))
 # display chips for 3 players
 if num is 3:
-    x = 0
-    y = 0
-    player_1 = pygame.draw.rect(win, blue, (x,y,5,5))
-    x = 10
-    y = 0
-    player_2 = pygame.draw.rect(win, red, (x,y,5,5))
-    x = 0
-    y = 10
-    player_3 = pygame.draw.rect(win, green, (x,y,5,5))
+    pygame.draw.rect(win, blue, (p1["x"],p1["y"],5,5))
+    pygame.draw.rect(win, red, (p2["x"],p2["y"],5,5))
+    pygame.draw.rect(win, green, (p3["x"],p3["y"],5,5))
 # display chips for 4 players
 if num is 4:
-    x = 0
-    y = 0
-    player_1 = pygame.draw.rect(win, blue, (x,y,5,5))
-    x = 10
-    y = 0
-    player_2 = pygame.draw.rect(win, red, (x,y,5,5))
-    x = 0
-    y = 10
-    player_3 = pygame.draw.rect(win, green, (x,y,5,5))
-    x = 10
-    y = 10
-    player_4 = pygame.draw.rect(win, purple, (x,y,5,5))
+    pygame.draw.rect(win, blue, (p1["x"],p1["y"],5,5))
+    pygame.draw.rect(win, red, (p2["x"],p2["y"],5,5))
+    pygame.draw.rect(win, green, (p3["x"],p3["y"],5,5))
+    pygame.draw.rect(win, purple, (p4["x"],p4["y"],5,5))
+
+# wait 2 seconds
+pygame.time.delay(2000)
 
 # main loop
 while True:
@@ -153,11 +163,11 @@ while True:
         if event.type == pygame.QUIT:
             # exit the program
             sys.exit()
-    keys = pygame.key.get_pressed
-    print("It's player 1's turn. Press enter to roll the die")
+    print("It's player 1's turn")
     # random number between 1 and 6
-    dice = randint(1,6)
+    dice = random.randint(1,6)
     print(f'You rolled a {dice}')
+    p1['x'] += dice
 
 
 
