@@ -186,7 +186,7 @@ while True:
     # wait 1 second
     wait(1)
     # random number between 1 and 6
-    dice1 = random.randint(1,6)
+    dice = random.randint(1,6)
     print(f'You rolled a {dice}')
     p1['x'] += (dice*40)
     
