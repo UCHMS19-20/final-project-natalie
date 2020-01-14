@@ -16,6 +16,11 @@ green = (0,255,0)
 purple = (255,0,255)
 gold = (212,175,55)
 
+# defined wait time
+def wait(sec):
+    pygame.time.delay(sec*1000)
+    return
+
 # create window
 win = pygame.display.set_mode((500,500))
 win.fill (black)
@@ -84,16 +89,16 @@ draw_board()
 
 # print title of game
 font = pygame.font.SysFont('Arial', 100)
-text1 = font.render('Gold', True, gold)
-text2 = font.render('Rush', True, gold)
-win.blit(text1, (130,120))
-win.blit(text2, (130,240))
+text = font.render('Gold', True, gold)
+win.blit(text, (130,120))
+text = font.render('Rush', True, gold)
+win.blit(text, (130,240))
 
 # update display
 pygame.display.flip()
 
 # wait 3 seconds
-pygame.time.delay(3000)
+wait(3)
 # "erases" title
 win.fill (black,(100,100,300,300))
 
@@ -126,56 +131,71 @@ p4 = {
 
 # function for number of players
 def player_num():
-    pygame.draw.rect(win, gold, (x,y,width,height))
-    return num
+    font = pygame.font.SysFont('Arial', 20)
+
+    pygame.draw.rect(win, blue, (170,140,160,80))
+    two_p = pygame.draw.rect(win, gold, (175,145,150,70))
+    text = font.render('2 players', True, black)
+    win.blit(text, (210,170))
+
+    pygame.draw.rect(win, blue, (70,260,160,80))
+    three_p = pygame.draw.rect(win, gold, (75,265,150,70))
+    text = font.render('3 players', True, black)
+    win.blit(text, (110,290))
+
+    pygame.draw.rect(win, blue, (270,260,160,80))
+    four_p = pygame.draw.rect(win, gold, (275,265,150,70))
+    text = font.render('4 players', True, black)
+    win.blit(text, (310,290))
+
+    if pygame.mouse.get_pressed() on two_p:
+        pygame.draw.rect(win, blue, (p1["x"],p1["y"],10,10))
+        pygame.draw.rect(win, red, (p2["x"],p2["y"],10,10))
+
+    if pygame.mouse.get_pressed() on three_p:
+        pygame.draw.rect(win, blue, (p1["x"],p1["y"],10,10))
+        pygame.draw.rect(win, red, (p2["x"],p2["y"],10,10))
+        pygame.draw.rect(win, green, (p3["x"],p3["y"],10,10))
+    
+    if pygame.mouse.get_pressed() on four_p:
+        pygame.draw.rect(win, blue, (p1["x"],p1["y"],10,10))
+        pygame.draw.rect(win, red, (p2["x"],p2["y"],10,10))
+        pygame.draw.rect(win, green, (p3["x"],p3["y"],10,10))
+        pygame.draw.rect(win, purple, (p4["x"],p4["y"],10,10)
+
 
 # get number of players
-num = player_num()
-
-# display chips for 2 players
-if num is 2:
-    pygame.draw.rect(win, blue, (p1["x"],p1["y"],10,10))
-    pygame.draw.rect(win, red, (p2["x"],p2["y"],10,10))
-# display chips for 3 players
-if num is 3:
-    pygame.draw.rect(win, blue, (p1["x"],p1["y"],10,10))
-    pygame.draw.rect(win, red, (p2["x"],p2["y"],10,10))
-    pygame.draw.rect(win, green, (p3["x"],p3["y"],10,10))
-# display chips for 4 players
-if num is 4:
-    pygame.draw.rect(win, blue, (p1["x"],p1["y"],10,10))
-    pygame.draw.rect(win, red, (p2["x"],p2["y"],10,10))
-    pygame.draw.rect(win, green, (p3["x"],p3["y"],10,10))
-    pygame.draw.rect(win, purple, (p4["x"],p4["y"],10,10))
+player_num()
 
 # update display
 pygame.display.flip()
 
 # wait 2 seconds
-pygame.time.delay(2000)
+wait(2)
 
-# set number of rounds
-rounds = 0
-
-# set for 10 rounds
-while rounds < 11:
-    # add 1 to rounds every round
-    rounds += 1
+# main loop
+while True:
+    # do something for each event in the event queue
+    for event in pygame.event.get():
+        # check to see if the current event is a QUIT event
+        if event.type == pygame.QUIT:
+            # exit the program
+            sys.exit()
 
     print("It's player 1's turn")
     # wait 1 second
-    pygame.time.delay(1000)
+    wait(1)
     # random number between 1 and 6
     dice1 = random.randint(1,6)
     print(f'You rolled a {dice}')
     p1['x'] += (dice*40)
     
     # wait 1 second
-    pygame.time.delay(1000)
+    wait(1)
 
     print("It's player 2's turn")
     # wait 1 second
-    pygame.time.delay(1000)
+    wait(1)
     # random number between 1 and 6
     dice = random.randint(1,6)
     print(f'You rolled a {dice}')
@@ -183,10 +203,10 @@ while rounds < 11:
 
     if num is 3 or 4:
         # wait 1 second
-        pygame.time.delay(1000)
+        wait(1)
         print("It's player 3's turn")
         # wait 1 second
-        pygame.time.delay(1000)
+        wait(1)
         # random number between 1 and 6
         dice = random.randint(1,6)
         print(f'You rolled a {dice}')
@@ -194,10 +214,10 @@ while rounds < 11:
 
     if num is 4:
         # wait 1 second
-        pygame.time.delay(1000)
+        wait(1)
         print("It's player 4's turn")
         # wait 1 second
-        pygame.time.delay(1000)
+        wait(1)
         # random number between 1 and 6
         dice = random.randint(1,6)
         print(f'You rolled a {dice}')
