@@ -16,8 +16,11 @@ green = (0,255,0)
 purple = (255,0,255)
 gold = (212,175,55)
 
-# state
+# base variables
 state = 0
+special = 0
+num = 0
+click = False
 
 # creates window
 win = pygame.display.set_mode((500,500))
@@ -30,6 +33,7 @@ def wait(sec):
 # defined board
 def draw_board():
     global win
+    global special
     s_width = 40
     s_height = 40
     # draw top row
@@ -127,11 +131,23 @@ p4 = {
     '$': 0
 }
 
+p_width = 10
+p_height = 10
+player1 = pygame.Rect(p1["x"],p1["y"],p_width,p_height)
+player2 = pygame.Rect(p2["x"],p2["y"],p_width,p_height)
+player3 = pygame.Rect(p3["x"],p3["y"],p_width,p_height)
+player4 = pygame.Rect(p4["x"],p4["y"],p_width,p_height)
+
 # function for number of players
 def player_num():
+    global player1
+    global player2
+    global player3
+    global player4
+    global click
+    global num
+
     font = pygame.font.SysFont('Arial', 20)
-    p_width = 10
-    p_height = 10
     # button for 2 players
     pygame.draw.rect(win, blue, (170,140,160,80))
     two_p = pygame.Rect(175,145,150,70)
@@ -152,50 +168,44 @@ def player_num():
     pygame.draw.rect(win, gold, four_p)
     text = font.render('4 players', True, black)
     win.blit(text, (310,290))
-    
 
-    # if 2 player button is pressed, 2 chips will be displayed
+    # update display
+    pygame.display.flip()
+    
     if event.type == pygame.MOUSEBUTTONDOWN:
-        if two_p.collidepoint(pygame.mouse.get_pos()[0]):
-            player1 = pygame.Rect(p1["x"],p1["y"],p_width,p_height)
-            pygame.draw.rect(win, blue, player1)
-            player2 = pygame.Rect(p2["x"],p2["y"],p_width,p_height)
-            pygame.draw.rect(win, red, player2)
+        # if 2 player button is pressed, 2 chips will be displayed
+        if two_p.collidepoint(pygame.mouse.get_pos()):
             num = 2
-    
-    # if 3 player button is pressed, 3 chips will be displayed
-    if event.type == pygame.MOUSEBUTTONDOWN:
-        if three_p.collidepoint(pygame.mouse.get_pos()[0]):
-            player1 = pygame.Rect(p1["x"],p1["y"],p_width,p_height)
             pygame.draw.rect(win, blue, player1)
-            player2 = pygame.Rect(p2["x"],p2["y"],p_width,p_height)
             pygame.draw.rect(win, red, player2)
-            player3 = pygame.Rect(p3["x"],p3["y"],p_width,p_height)
-            pygame.draw.rect(win, green, player3)
+            click = True
+            # update display
+            pygame.display.flip()
+
+        # if 3 player button is pressed, 3 chips will be displayed
+        if three_p.collidepoint(pygame.mouse.get_pos()):
             num = 3
-    
-    # if 4 player button is pressed, 4 chips will be displayed
-    if event.type == pygame.MOUSEBUTTONDOWN:
-        if four_p.collidepoint(pygame.mouse.get_pos()[0]):
-            player1 = pygame.Rect(p1["x"],p1["y"],p_width,p_height)
             pygame.draw.rect(win, blue, player1)
-            player2 = pygame.Rect(p2["x"],p2["y"],p_width,p_height)
             pygame.draw.rect(win, red, player2)
-            player3 = pygame.Rect(p3["x"],p3["y"],p_width,p_height)
             pygame.draw.rect(win, green, player3)
-            player4 = pygame.Rect(p4["x"],p4["y"],p_width,p_height)
-            pygame.draw.rect(win, purple, player4)
+            click = True
+            # update display
+            pygame.display.flip()
+
+        # if 4 player button is pressed, 4 chips will be displayed
+        if four_p.collidepoint(pygame.mouse.get_pos()):
             num = 4
-    return num
+            pygame.draw.rect(win, blue, player1)
+            pygame.draw.rect(win, red, player2)
+            pygame.draw.rect(win, green, player3)
+            pygame.draw.rect(win, purple, player4)
+            click = True
+            # update display
+            pygame.display.flip()
+    return
 
 # stage 0 is the intro stage
 def stage_0():
-    global state
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            sys.exit()
-        elif event.type == pygame.MOUSEBUTTONDOWN:
-            state += 1
     # makes window black
     win.fill (black)
     # draws game board
@@ -204,34 +214,64 @@ def stage_0():
     title()
     # update display
     pygame.display.flip()
-    # wait 3 seconds
-    wait(3)
+    # wait 1 second
+    wait(1)
     # "erases" title
     win.fill (black,(100,100,300,300))
     # update display
     pygame.display.flip()
     # get number of players
-    num = player_num()
+    player_num()
 
 def stage_1():
-    # wait 2 seconds
-    wait(2)
-    print("It's Player 1's turn")
+    # win.fill(black)
+    # pygame.display.flip()
+    global player1
+    global player2
+    global player3
+    global player4
+    wait(1)
+    # erases player buttons
+    win.fill(black, (50,50,400,400))
+
+    font = pygame.font.SysFont('Arial', 20)
+    text = font.render("It's Player 1's turn", True, white)
+    win.blit(text, (130,120))
     # wait 1 second
     wait(1)
     # random number between 1 and 6
     dice = random.randint(1,6)
-    print(f'You rolled a {dice}')
+    print("You rolled a %" % dice)
+    # update display
+    pygame.display.flip()
     move = dice*40
     p1['x'] += move
     if p1['x'] >= 500:
         p1['x'] -= 500
         p1['y'] += p1['x']
         p1['x'] = 460
+    if p1['y'] >= 500:
+        p1['y'] -= 500
+        p1['x'] -= p1['y']
+        p1['y'] = 460
+    if p1['x'] <= 0:
+        p1['y'] += p1['x']
+        p1['x'] = 0
+    if p1['y'] <= 0:
+        p1['x'] += p1['y']
+        p1['y'] = 0
+    draw_board()
     pygame.draw.rect(win, blue, (p1["x"],p1["y"],10,10))
+    pygame.draw.rect(win, red, (p2["x"],p2["y"],10,10))
+    if num is 3 or 4:
+        pygame.draw.rect(win, green, (p3["x"],p3["y"],10,10))
+    if num is 4:
+        pygame.draw.rect(win, purple, (p4["x"],p4["y"],10,10))
+    # update display
+    pygame.display.flip()
     if player1.colliderect(special):
         p1['$'] += 100
-        print(f"Player 1 now has ${p1['$']}")
+        print("Player 1 now has $ %" % p1['$'])
     # update display
     pygame.display.flip()
 
@@ -242,9 +282,17 @@ def stage_1():
     wait(1)
     # random number between 1 and 6
     dice = random.randint(1,6)
-    print(f'You rolled a {dice}')
+    print('You rolled a %' % dice)
+    # update display
+    pygame.display.flip()
     p2['x'] += (dice*40)
+    draw_board()
+    pygame.draw.rect(win, blue, (p1["x"],p1["y"],10,10))
     pygame.draw.rect(win, red, (p2["x"],p2["y"],10,10))
+    if num is 3 or 4:
+        pygame.draw.rect(win, green, (p3["x"],p3["y"],10,10))
+    if num is 4:
+        pygame.draw.rect(win, purple, (p4["x"],p4["y"],10,10))
     # update display
     pygame.display.flip()
 
@@ -256,9 +304,16 @@ def stage_1():
         wait(1)
         # random number between 1 and 6
         dice = random.randint(1,6)
-        print(f'You rolled a {dice}')
+        print('You rolled a %' % dice)
+        # update display
+        pygame.display.flip()
         p3['x'] += (dice*40)
+        draw_board()
+        pygame.draw.rect(win, blue, (p1["x"],p1["y"],10,10))
+        pygame.draw.rect(win, red, (p2["x"],p2["y"],10,10))
         pygame.draw.rect(win, green, (p3["x"],p3["y"],10,10))
+        if num is 4:
+            pygame.draw.rect(win, purple, (p4["x"],p4["y"],10,10))
         # update display
         pygame.display.flip()
 
@@ -270,17 +325,25 @@ def stage_1():
         wait(1)
         # random number between 1 and 6
         dice = random.randint(1,6)
-        print(f'You rolled a {dice}')
+        print('You rolled a %' % dice)
+        # update display
+        pygame.display.flip()
         p4['x'] += (dice*40)
+        draw_board()
+        pygame.draw.rect(win, blue, (p1["x"],p1["y"],10,10))
+        pygame.draw.rect(win, red, (p2["x"],p2["y"],10,10))
+        pygame.draw.rect(win, green, (p3["x"],p3["y"],10,10))
         pygame.draw.rect(win, purple, (p4["x"],p4["y"],10,10))
         # update display
         pygame.display.flip()
+
+while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()
-
-while True:
-    if state == 0:
-        stage_0()
-    else:
-        stage_1()
+        if click == True:
+            state = 1
+        if state == 0:
+            stage_0()
+        if state == 1:
+            stage_1()
