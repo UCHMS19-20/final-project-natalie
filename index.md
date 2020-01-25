@@ -1,1 +1,1 @@
-Main Page
+# Gold Rush
