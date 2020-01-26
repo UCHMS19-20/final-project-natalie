@@ -22,6 +22,9 @@ special = 0
 num = 0
 click = False
 direction_1 = 1
+direction_2 = 1
+direction_3 = 1
+direction_4 = 1
 
 # creates window
 win = pygame.display.set_mode((500,500))
@@ -203,6 +206,9 @@ def player_num():
             click = True
             # update display
             pygame.display.flip()
+    # erases player buttons
+    win.fill(black, (50,50,400,400))
+    pygame.display.flip()
     return
 
 # stage 0 is the intro stage
@@ -216,7 +222,7 @@ def stage_0():
     # update display
     pygame.display.flip()
     # wait 1 second
-    wait(1)
+    wait(3)
     # "erases" title
     win.fill (black,(100,100,300,300))
     # update display
@@ -234,8 +240,6 @@ def stage_1():
     global direction_3
     global direction_4
     wait(1)
-    # erases player buttons
-    win.fill(black, (50,50,400,400))
     font = pygame.font.SysFont('Arial', 20)
     
     # player 1's turn
@@ -243,7 +247,7 @@ def stage_1():
     text = font.render("It's Player 1's turn", True, white)
     win.blit(text, (130,120))
     pygame.display.flip()
-    wait(1)
+    wait(2)
     # random number between 1 and 6
     dice = random.randint(1,6)
     # display dice roll
@@ -301,16 +305,50 @@ def stage_1():
     pygame.display.flip()
 
     # player 2's turn
-    wait(1)
-    print("It's Player 2's turn")
-    # wait 1 second
-    wait(1)
+    # indicates player 2's turn
+    text = font.render("It's Player 2's turn", True, white)
+    win.blit(text, (130,120))
+    pygame.display.flip()
+    wait(2)
     # random number between 1 and 6
     dice = random.randint(1,6)
-    print('You rolled a %' % dice)
-    # update display
+    # display dice roll
+    text = font.render('You rolled a', True, white)
+    win.blit(text, (130,120))
+    text = font.render(str(dice), True, white)
+    win.blit(text, (130,150))
     pygame.display.flip()
-    p2['x'] += (dice*40)
+    wait(3)
+    move = dice*40
+    # if out of bounds, player chip changes direction
+    if p2['x'] >= 500:
+        p2['x'] -= 500
+        p2['y'] += p2['x']
+        p2['x'] = 460
+        direction_2 = 1 
+    if p2['y'] >= 500:
+        p2['y'] -= 500
+        p2['x'] -= p2['y']
+        p2['y'] = 460
+        direction_2 = 2
+    if p2['x'] <= 0:
+        p2['y'] -= p2['x']
+        p2['x'] = 0
+        direction_2 = 3
+    if p2['y'] <= 0:
+        p2['x'] -= p2['y']
+        p2['y'] = 0
+        direction_2 = 4
+    # player 2's chip moves
+    if direction_2 == 1:
+        p2['x'] += move
+    if direction_2 == 2:
+        p2['y'] += move
+    if direction_2 == 3:
+        p2['x'] -= move
+    if direction_2 == 4:
+        p2['y'] -= move
+    # update the board with new player position
     draw_board()
     pygame.draw.rect(win, blue, (p1["x"],p1["y"],10,10))
     pygame.draw.rect(win, red, (p2["x"],p2["y"],10,10))
@@ -319,19 +357,61 @@ def stage_1():
     if num == 4:
         pygame.draw.rect(win, purple, (p4["x"],p4["y"],10,10))
     pygame.display.flip()
+    # if player lands on special space, they receive $100
+    if player2.colliderect(special):
+        p2['$'] += 100
+        text = font.render('Player 2 now has', True, white)
+        win.blit(text, (130,120)
+        text = font.render(str(p2['$']), True, white)
+        win.blit(text, (130,150))
+    pygame.display.flip()
 
     if num == 3 or num == 4:
-        # wait 1 second
-        wait(1)
-        print("It's Player 3's turn")
-        # wait 1 second
-        wait(1)
+        # player 3's turn
+        # indicates player 3's turn
+        text = font.render("It's Player 3's turn", True, white)
+        win.blit(text, (130,120))
+        pygame.display.flip()
+        wait(2)
         # random number between 1 and 6
         dice = random.randint(1,6)
-        print('You rolled a %' % dice)
-        # update display
+        # display dice roll
+        text = font.render('You rolled a', True, white)
+        win.blit(text, (130,120))
+        text = font.render(str(dice), True, white)
+        win.blit(text, (130,150))
         pygame.display.flip()
-        p3['x'] += (dice*40)
+        wait(3)
+        move = dice*40
+        # if out of bounds, player chip changes direction
+        if p3['x'] >= 500:
+            p3['x'] -= 500
+            p3['y'] += p3['x']
+            p3['x'] = 460
+            direction_3 = 1 
+        if p3['y'] >= 500:
+            p3['y'] -= 500
+            p3['x'] -= p3['y']
+            p3['y'] = 460
+            direction_3 = 2
+        if p3['x'] <= 0:
+            p3['y'] -= p3['x']
+            p3['x'] = 0
+            direction_3 = 3
+        if p3['y'] <= 0:
+            p3['x'] -= p3['y']
+            p3['y'] = 0
+            direction_3 = 4
+        # player 3's chip moves
+        if direction_3 == 1:
+            p3['x'] += move
+        if direction_3 == 2:
+            p3['y'] += move
+        if direction_3 == 3:
+            p3['x'] -= move
+        if direction_3 == 4:
+            p3['y'] -= move
+        # update the board with new player position
         draw_board()
         pygame.draw.rect(win, blue, (p1["x"],p1["y"],10,10))
         pygame.draw.rect(win, red, (p2["x"],p2["y"],10,10))
@@ -339,24 +419,73 @@ def stage_1():
         if num == 4:
             pygame.draw.rect(win, purple, (p4["x"],p4["y"],10,10))
         pygame.display.flip()
+        # if player lands on special space, they receive $100
+        if player3.colliderect(special):
+            p3['$'] += 100
+            text = font.render('Player 3 now has', True, white)
+            win.blit(text, (130,120)
+            text = font.render(str(p3['$']), True, white)
+            win.blit(text, (130,150))
 
     if num == 4:
-        # wait 1 second
-        wait(1)
-        print("It's Player 4's turn")
-        # wait 1 second
-        wait(1)
+        wait(3)
+        win.fill(black, (50,50,400,400))
+        text = font.render("It's Player 4's turn", True, white)
+        win.blit(text, (130,120))
+        pygame.display.flip()
+        wait(2)
         # random number between 1 and 6
         dice = random.randint(1,6)
-        print('You rolled a %' % dice)
-        # update display
+        # display dice roll
+        text = font.render('You rolled a', True, white)
+        win.blit(text, (130,120))
+        text = font.render(str(dice), True, white)
+        win.blit(text, (130,150))
         pygame.display.flip()
-        p4['x'] += (dice*40)
+        wait(3)
+        move = dice*40
+        # if out of bounds, player chip changes direction
+        if p4['x'] >= 500:
+            p4['x'] -= 500
+            p4['y'] += p4['x']
+            p4['x'] = 460
+            direction_4 = 1 
+        if p4['y'] >= 500:
+            p4['y'] -= 500
+            p4['x'] -= p4['y']
+            p4['y'] = 460
+            direction_4 = 2
+        if p4['x'] <= 0:
+            p4['y'] -= p4['x']
+            p4['x'] = 0
+            direction_4 = 3
+        if p4['y'] <= 0:
+            p4['x'] -= p4['y']
+            p4['y'] = 0
+            direction_4 = 4
+        # player 1's chip moves
+        if direction_4 == 1:
+            p4['x'] += move
+        if direction_4 == 2:
+            p4['y'] += move
+        if direction_4 == 3:
+            p4['x'] -= move
+        if direction_4 == 4:
+            p4['y'] -= move
+        # update the board with new player position
         draw_board()
         pygame.draw.rect(win, blue, (p1["x"],p1["y"],10,10))
         pygame.draw.rect(win, red, (p2["x"],p2["y"],10,10))
         pygame.draw.rect(win, green, (p3["x"],p3["y"],10,10))
         pygame.draw.rect(win, purple, (p4["x"],p4["y"],10,10))
+        pygame.display.flip()
+        # if player lands on special space, they receive $100
+        if player4.colliderect(special):
+            p4['$'] += 100
+            text = font.render('Player 4 now has', True, white)
+            win.blit(text, (130,120)
+            text = font.render(str(p4['$']), True, white)
+            win.blit(text, (130,150))
         pygame.display.flip()
 
 while True:
