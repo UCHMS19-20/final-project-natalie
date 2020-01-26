@@ -7,7 +7,7 @@ This simple yet fun board game can be played by all! The goal is to obtain the m
 Here's a link to a Google Slides presentation about the game and my coding experience: https://docs.google.com/presentation/d/1sf-3TVRS-xNvPR33j74dJWFb0ILXnFIsLclPRcs8sNk/edit?usp=sharing
 ***
 ## Flowchart
-
+Here's a flowchart to help explain the coding behind **Gold Rush**:
 ***
 ## Works Cited
 > “Creating a Start Menu.” Python Programming Tutorials, pythonprogramming.net/pygame-start-menu-tutorial/.
