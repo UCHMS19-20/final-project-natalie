@@ -263,9 +263,9 @@ def stage_1():
     draw_board()
     pygame.draw.rect(win, blue, (p1["x"],p1["y"],10,10))
     pygame.draw.rect(win, red, (p2["x"],p2["y"],10,10))
-    if num is 3 or 4:
+    if num == 3 or 4:
         pygame.draw.rect(win, green, (p3["x"],p3["y"],10,10))
-    if num is 4:
+    if num == 4:
         pygame.draw.rect(win, purple, (p4["x"],p4["y"],10,10))
     # update display
     pygame.display.flip()
@@ -289,14 +289,14 @@ def stage_1():
     draw_board()
     pygame.draw.rect(win, blue, (p1["x"],p1["y"],10,10))
     pygame.draw.rect(win, red, (p2["x"],p2["y"],10,10))
-    if num is 3 or 4:
+    if num == 3 or 4:
         pygame.draw.rect(win, green, (p3["x"],p3["y"],10,10))
-    if num is 4:
+    if num == 4:
         pygame.draw.rect(win, purple, (p4["x"],p4["y"],10,10))
     # update display
     pygame.display.flip()
 
-    if num is 3 or 4:
+    if num == 3 or 4:
         # wait 1 second
         wait(1)
         print("It's Player 3's turn")
@@ -312,12 +312,12 @@ def stage_1():
         pygame.draw.rect(win, blue, (p1["x"],p1["y"],10,10))
         pygame.draw.rect(win, red, (p2["x"],p2["y"],10,10))
         pygame.draw.rect(win, green, (p3["x"],p3["y"],10,10))
-        if num is 4:
+        if num == 4:
             pygame.draw.rect(win, purple, (p4["x"],p4["y"],10,10))
         # update display
         pygame.display.flip()
 
-    if num is 4:
+    if num == 4:
         # wait 1 second
         wait(1)
         print("It's Player 4's turn")
