@@ -15,3 +15,5 @@ Here's a flowchart to help explain the coding behind **Gold Rush**:
 > Patel, Kishan. “Pygame Button Single Click.” SemicolonWorld, 23 May 2018, www.semicolonworld.com/question/54008/pygame-button-single-click.
 
 > “Pygame Front Page¶.” Pygame Front Page - Pygame v2.0.0.dev5 Documentation, www.pygame.org/docs/.
+
+> user3092874user3092874 1311 silver badge44 bronze badges, and slothsloth 82.4k1616 gold badges139139 silver badges189189 bronze badges. “Pygame - Display Variable on Display Window.” Stack Overflow, 1 Dec. 1963, stackoverflow.com/questions/20546661/pygame-display-variable-on-display-window.
