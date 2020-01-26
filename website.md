@@ -10,4 +10,8 @@ Here's a link to a Google Slides presentation about the game and my coding exper
 
 ***
 ## Works Cited
-- 
+> “Creating a Start Menu.” Python Programming Tutorials, pythonprogramming.net/pygame-start-menu-tutorial/.
+
+> Patel, Kishan. “Pygame Button Single Click.” SemicolonWorld, 23 May 2018, www.semicolonworld.com/question/54008/pygame-button-single-click.
+
+> “Pygame Front Page¶.” Pygame Front Page - Pygame v2.0.0.dev5 Documentation, www.pygame.org/docs/.
