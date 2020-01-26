@@ -241,7 +241,7 @@ def stage_1():
     global direction_4
     wait(1)
     font = pygame.font.SysFont('Arial', 20)
-    
+
     # player 1's turn
     # indicates player 1's turn
     text = font.render("It's Player 1's turn", True, white)
@@ -258,6 +258,7 @@ def stage_1():
     pygame.display.flip()
     wait(3)
     move = dice*40
+
     # if out of bounds, player chip changes direction
     if p1['x'] >= 500:
         p1['x'] -= 500
@@ -277,6 +278,7 @@ def stage_1():
         p1['x'] -= p1['y']
         p1['y'] = 0
         direction_1 = 4
+    
     # player 1's chip moves
     if direction_1 == 1:
         p1['x'] += move
@@ -286,6 +288,7 @@ def stage_1():
         p1['x'] -= move
     if direction_1 == 4:
         p1['y'] -= move
+    
     # update the board with new player position
     draw_board()
     pygame.draw.rect(win, blue, (p1["x"],p1["y"],10,10))
@@ -295,6 +298,7 @@ def stage_1():
     if num == 4:
         pygame.draw.rect(win, purple, (p4["x"],p4["y"],10,10))
     pygame.display.flip()
+
     # if player lands on special space, they receive $100
     if player1.colliderect(special):
         p1['$'] += 100
@@ -302,13 +306,13 @@ def stage_1():
         win.blit(text, (130,120)
         text = font.render(str(p1['$']), True, white)
         win.blit(text, (130,150))
-    pygame.display.flip()
+        pygame.display.flip()
 
     # player 2's turn
     # indicates player 2's turn
     text = font.render("It's Player 2's turn", True, white)
     win.blit(text, (130,120))
-    pygame.display.flip()
+    pygame.display.flip() 
     wait(2)
     # random number between 1 and 6
     dice = random.randint(1,6)
@@ -320,6 +324,7 @@ def stage_1():
     pygame.display.flip()
     wait(3)
     move = dice*40
+
     # if out of bounds, player chip changes direction
     if p2['x'] >= 500:
         p2['x'] -= 500
@@ -339,6 +344,7 @@ def stage_1():
         p2['x'] -= p2['y']
         p2['y'] = 0
         direction_2 = 4
+    
     # player 2's chip moves
     if direction_2 == 1:
         p2['x'] += move
@@ -348,6 +354,7 @@ def stage_1():
         p2['x'] -= move
     if direction_2 == 4:
         p2['y'] -= move
+    
     # update the board with new player position
     draw_board()
     pygame.draw.rect(win, blue, (p1["x"],p1["y"],10,10))
@@ -357,6 +364,7 @@ def stage_1():
     if num == 4:
         pygame.draw.rect(win, purple, (p4["x"],p4["y"],10,10))
     pygame.display.flip()
+
     # if player lands on special space, they receive $100
     if player2.colliderect(special):
         p2['$'] += 100
@@ -383,6 +391,7 @@ def stage_1():
         pygame.display.flip()
         wait(3)
         move = dice*40
+
         # if out of bounds, player chip changes direction
         if p3['x'] >= 500:
             p3['x'] -= 500
@@ -402,6 +411,7 @@ def stage_1():
             p3['x'] -= p3['y']
             p3['y'] = 0
             direction_3 = 4
+        
         # player 3's chip moves
         if direction_3 == 1:
             p3['x'] += move
@@ -411,6 +421,7 @@ def stage_1():
             p3['x'] -= move
         if direction_3 == 4:
             p3['y'] -= move
+        
         # update the board with new player position
         draw_board()
         pygame.draw.rect(win, blue, (p1["x"],p1["y"],10,10))
@@ -419,6 +430,7 @@ def stage_1():
         if num == 4:
             pygame.draw.rect(win, purple, (p4["x"],p4["y"],10,10))
         pygame.display.flip()
+
         # if player lands on special space, they receive $100
         if player3.colliderect(special):
             p3['$'] += 100
@@ -444,6 +456,7 @@ def stage_1():
         pygame.display.flip()
         wait(3)
         move = dice*40
+
         # if out of bounds, player chip changes direction
         if p4['x'] >= 500:
             p4['x'] -= 500
@@ -463,6 +476,7 @@ def stage_1():
             p4['x'] -= p4['y']
             p4['y'] = 0
             direction_4 = 4
+        
         # player 1's chip moves
         if direction_4 == 1:
             p4['x'] += move
@@ -472,6 +486,7 @@ def stage_1():
             p4['x'] -= move
         if direction_4 == 4:
             p4['y'] -= move
+        
         # update the board with new player position
         draw_board()
         pygame.draw.rect(win, blue, (p1["x"],p1["y"],10,10))
@@ -479,6 +494,7 @@ def stage_1():
         pygame.draw.rect(win, green, (p3["x"],p3["y"],10,10))
         pygame.draw.rect(win, purple, (p4["x"],p4["y"],10,10))
         pygame.display.flip()
+
         # if player lands on special space, they receive $100
         if player4.colliderect(special):
             p4['$'] += 100
@@ -498,6 +514,7 @@ while True:
             stage_0()
         if state == 1:
             stage_1()
+        
         # if someone reaches $2000, the closing screen will display and then quit
         if p1['$'] == 2000 or p2['$'] == 2000 or p3['$'] == 2000 or p4['$'] == 2000:
             win.fill (black)
@@ -523,6 +540,7 @@ while True:
                 win.blit(text, (130,120)
                 text = font.render(str(p4['$']), True, white)
                 win.blit(text, (130,150))
+            
             win.fill(black)
             if p1['$'] == 2000:
                 text = font.render('Player 1 wins', True, white)
