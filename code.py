@@ -21,6 +21,7 @@ state = 0
 special = 0
 num = 0
 click = False
+direction_1 = 1
 
 # creates window
 win = pygame.display.set_mode((500,500))
@@ -224,42 +225,64 @@ def stage_0():
     player_num()
 
 def stage_1():
-    # win.fill(black)
-    # pygame.display.flip()
     global player1
     global player2
     global player3
     global player4
+    global direction_1
+    global direction_2
+    global direction_3
+    global direction_4
     wait(1)
     # erases player buttons
     win.fill(black, (50,50,400,400))
-
     font = pygame.font.SysFont('Arial', 20)
+    
+    # player 1's turn
+    # indicates player 1's turn
     text = font.render("It's Player 1's turn", True, white)
     win.blit(text, (130,120))
-    # wait 1 second
+    pygame.display.flip()
     wait(1)
     # random number between 1 and 6
     dice = random.randint(1,6)
-    print("You rolled a %" % dice)
-    # update display
+    # display dice roll
+    text = font.render('You rolled a', True, white)
+    win.blit(text, (130,120))
+    text = font.render(str(dice), True, white)
+    win.blit(text, (130,150))
     pygame.display.flip()
+    wait(3)
     move = dice*40
-    p1['x'] += move
+    # if out of bounds, player chip changes direction
     if p1['x'] >= 500:
         p1['x'] -= 500
         p1['y'] += p1['x']
         p1['x'] = 460
+        direction_1 = 1 
     if p1['y'] >= 500:
         p1['y'] -= 500
         p1['x'] -= p1['y']
         p1['y'] = 460
+        direction_1 = 2
     if p1['x'] <= 0:
-        p1['y'] += p1['x']
+        p1['y'] -= p1['x']
         p1['x'] = 0
+        direction_1 = 3
     if p1['y'] <= 0:
-        p1['x'] += p1['y']
+        p1['x'] -= p1['y']
         p1['y'] = 0
+        direction_1 = 4
+    # player 1's chip moves
+    if direction_1 == 1:
+        p1['x'] += move
+    if direction_1 == 2:
+        p1['y'] += move
+    if direction_1 == 3:
+        p1['x'] -= move
+    if direction_1 == 4:
+        p1['y'] -= move
+    # update the board with new player position
     draw_board()
     pygame.draw.rect(win, blue, (p1["x"],p1["y"],10,10))
     pygame.draw.rect(win, red, (p2["x"],p2["y"],10,10))
@@ -267,15 +290,17 @@ def stage_1():
         pygame.draw.rect(win, green, (p3["x"],p3["y"],10,10))
     if num == 4:
         pygame.draw.rect(win, purple, (p4["x"],p4["y"],10,10))
-    # update display
     pygame.display.flip()
+    # if player lands on special space, they receive $100
     if player1.colliderect(special):
         p1['$'] += 100
-        print("Player 1 now has $ %" % p1['$'])
-    # update display
+        text = font.render('Player 1 now has', True, white)
+        win.blit(text, (130,120)
+        text = font.render(str(p1['$']), True, white)
+        win.blit(text, (130,150))
     pygame.display.flip()
 
-    # wait 1 second
+    # player 2's turn
     wait(1)
     print("It's Player 2's turn")
     # wait 1 second
