@@ -286,7 +286,7 @@ def stage_1():
     draw_board()
     pygame.draw.rect(win, blue, (p1["x"],p1["y"],10,10))
     pygame.draw.rect(win, red, (p2["x"],p2["y"],10,10))
-    if num == 3 or 4:
+    if num == 3 or num == 4:
         pygame.draw.rect(win, green, (p3["x"],p3["y"],10,10))
     if num == 4:
         pygame.draw.rect(win, purple, (p4["x"],p4["y"],10,10))
@@ -314,14 +314,13 @@ def stage_1():
     draw_board()
     pygame.draw.rect(win, blue, (p1["x"],p1["y"],10,10))
     pygame.draw.rect(win, red, (p2["x"],p2["y"],10,10))
-    if num == 3 or 4:
+    if num == 3 or num == 4:
         pygame.draw.rect(win, green, (p3["x"],p3["y"],10,10))
     if num == 4:
         pygame.draw.rect(win, purple, (p4["x"],p4["y"],10,10))
-    # update display
     pygame.display.flip()
 
-    if num == 3 or 4:
+    if num == 3 or num == 4:
         # wait 1 second
         wait(1)
         print("It's Player 3's turn")
@@ -339,7 +338,6 @@ def stage_1():
         pygame.draw.rect(win, green, (p3["x"],p3["y"],10,10))
         if num == 4:
             pygame.draw.rect(win, purple, (p4["x"],p4["y"],10,10))
-        # update display
         pygame.display.flip()
 
     if num == 4:
@@ -359,7 +357,6 @@ def stage_1():
         pygame.draw.rect(win, red, (p2["x"],p2["y"],10,10))
         pygame.draw.rect(win, green, (p3["x"],p3["y"],10,10))
         pygame.draw.rect(win, purple, (p4["x"],p4["y"],10,10))
-        # update display
         pygame.display.flip()
 
 while True:
@@ -372,3 +369,42 @@ while True:
             stage_0()
         if state == 1:
             stage_1()
+        # if someone reaches $2000, the closing screen will display and then quit
+        if p1['$'] == 2000 or p2['$'] == 2000 or p3['$'] == 2000 or p4['$'] == 2000:
+            win.fill (black)
+            # display player 1's money
+            text = font.render('Player 1:', True, white)
+            win.blit(text, (130,120)
+            text = font.render(str(p1['$']), True, white)
+            win.blit(text, (130,150))
+            # display player 2's money
+            text = font.render('Player 2:', True, white)
+            win.blit(text, (130,120)
+            text = font.render(str(p2['$']), True, white)
+            win.blit(text, (130,150))
+            if num == 3 or num == 4:
+                # display player 3's money
+                text = font.render('Player 3:', True, white)
+                win.blit(text, (130,120)
+                text = font.render(str(p3['$']), True, white)
+                win.blit(text, (130,150))
+            if num == 4:
+                # display player 4's money
+                text = font.render('Player 4:', True, white)
+                win.blit(text, (130,120)
+                text = font.render(str(p4['$']), True, white)
+                win.blit(text, (130,150))
+            win.fill(black)
+            if p1['$'] == 2000:
+                text = font.render('Player 1 wins', True, white)
+                win.blit(text, (130,120)
+            if p2['$'] == 2000:
+                text = font.render('Player 2 wins', True, white)
+                win.blit(text, (130,120)
+            if p3['$'] == 2000:
+                text = font.render('Player 3 wins', True, white)
+                win.blit(text, (130,120)
+            if p4['$'] == 2000:
+                text = font.render('Player 4 wins', True, white)
+                win.blit(text, (130,120)
+            event.type = pygame.QUIT
