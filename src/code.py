@@ -188,6 +188,8 @@ def player_num():
             pygame.draw.rect(win, blue, player1)
             pygame.draw.rect(win, red, player2)
             click = True
+            # erases player buttons
+            win.fill(black, (50, 50, 400, 400))
             # update display
             pygame.display.flip()
 
@@ -198,6 +200,8 @@ def player_num():
             pygame.draw.rect(win, red, player2)
             pygame.draw.rect(win, green, player3)
             click = True
+            # erases player buttons
+            win.fill(black, (50, 50, 400, 400))
             # update display
             pygame.display.flip()
 
@@ -209,11 +213,10 @@ def player_num():
             pygame.draw.rect(win, green, player3)
             pygame.draw.rect(win, purple, player4)
             click = True
+            # erases player buttons
+            win.fill(black, (50, 50, 400, 400))
             # update display
             pygame.display.flip()
-    # erases player buttons
-    win.fill(black, (50, 50, 400, 400))
-    pygame.display.flip()
     return
 
 
