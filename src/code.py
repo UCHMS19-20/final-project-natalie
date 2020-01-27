@@ -237,6 +237,7 @@ def stage_0():
     player_num()
 
 
+# stage 1 is game stage
 def stage_1():
     global player1
     global player2
