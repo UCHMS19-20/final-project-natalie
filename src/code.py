@@ -3,6 +3,7 @@ import sys
 import random
 # initiate pygame
 pygame.init()
+
 # get all fonts
 all_fonts = pygame.font.get_fonts()
 
