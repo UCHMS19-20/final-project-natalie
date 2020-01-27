@@ -228,7 +228,7 @@ def stage_0():
     # update display
     pygame.display.flip()
     # wait 3 second
-    wait(3)
+    wait(5)
     # "erases" title
     win.fill(black, (100, 100, 300, 300))
     # update display
@@ -247,15 +247,21 @@ def stage_1():
     global direction_2
     global direction_3
     global direction_4
-    wait(1)
+    wait(3)
     font = pygame.font.SysFont('Arial', 20)
 
     # player 1's turn
+    # clears middle of window
+    win.fill(black, (50, 50, 400, 400))
+    pygame.display.flip()
     # indicates player 1's turn
     text = font.render("It's Player 1's turn", True, white)
     win.blit(text, (130, 120))
     pygame.display.flip()
-    wait(2)
+    wait(5)
+    # clears middle of window
+    win.fill(black, (50, 50, 400, 400))
+    pygame.display.flip()
     # random number between 1 and 6
     dice = random.randint(1, 6)
     # display dice roll
@@ -306,7 +312,11 @@ def stage_1():
     if num == 4:
         pygame.draw.rect(win, purple, (p4["x"], p4["y"], 10, 10))
     pygame.display.flip()
-
+    
+    # clears middle of window
+    win.fill(black, (50, 50, 400, 400))
+    pygame.display.flip()
+    
     # if player lands on special space, they receive $100
     if player1.colliderect(special):
         p1['$'] += 100
@@ -315,13 +325,20 @@ def stage_1():
         text = font.render(str(p1['$']), True, white)
         win.blit(text, (130, 150))
         pygame.display.flip()
-
+    wait(4)
+    
     # player 2's turn
+    # clears middle of window
+    win.fill(black, (50, 50, 400, 400))
+    pygame.display.flip()
     # indicates player 2's turn
     text = font.render("It's Player 2's turn", True, white)
     win.blit(text, (130, 120))
     pygame.display.flip()
-    wait(2)
+    wait(5)
+    # clears middle of window
+    win.fill(black, (50, 50, 400, 400))
+    pygame.display.flip()
     # random number between 1 and 6
     dice = random.randint(1, 6)
     # display dice roll
@@ -373,6 +390,10 @@ def stage_1():
         pygame.draw.rect(win, purple, (p4["x"], p4["y"], 10, 10))
     pygame.display.flip()
 
+    # clears middle of window
+    win.fill(black, (50, 50, 400, 400))
+    pygame.display.flip()
+    
     # if player lands on special space, they receive $100
     if player2.colliderect(special):
         p2['$'] += 100
@@ -380,15 +401,22 @@ def stage_1():
         win.blit(text, (130, 120))
         text = font.render(str(p2['$']), True, white)
         win.blit(text, (130, 150))
-    pygame.display.flip()
+        pygame.display.flip()
+    wait(4)
 
     if num == 3 or num == 4:
         # player 3's turn
+        # clears middle of window
+        win.fill(black, (50, 50, 400, 400))
+        pygame.display.flip()
         # indicates player 3's turn
         text = font.render("It's Player 3's turn", True, white)
         win.blit(text, (130, 120))
         pygame.display.flip()
-        wait(2)
+        wait(5)
+        # clears middle of window
+        win.fill(black, (50, 50, 400, 400))
+        pygame.display.flip()
         # random number between 1 and 6
         dice = random.randint(1, 6)
         # display dice roll
@@ -439,6 +467,10 @@ def stage_1():
             pygame.draw.rect(win, purple, (p4["x"], p4["y"], 10, 10))
         pygame.display.flip()
 
+        # clears middle of window
+        win.fill(black, (50, 50, 400, 400))
+        pygame.display.flip()
+        
         # if player lands on special space, they receive $100
         if player3.colliderect(special):
             p3['$'] += 100
@@ -446,14 +478,21 @@ def stage_1():
             win.blit(text, (130, 120))
             text = font.render(str(p3['$']), True, white)
             win.blit(text, (130, 150))
+            pygame.display.flip()
+        wait(4)
 
     if num == 4:
-        wait(3)
+        # player 4's turn
+        # clears middle of window
         win.fill(black, (50, 50, 400, 400))
+        pygame.display.flip()
         text = font.render("It's Player 4's turn", True, white)
         win.blit(text, (130, 120))
         pygame.display.flip()
-        wait(2)
+        wait(5)
+        # clears middle of window
+        win.fill(black, (50, 50, 400, 400))
+        pygame.display.flip()
         # random number between 1 and 6
         dice = random.randint(1, 6)
         # display dice roll
@@ -503,6 +542,10 @@ def stage_1():
         pygame.draw.rect(win, purple, (p4["x"], p4["y"], 10, 10))
         pygame.display.flip()
 
+        # clears middle of window
+        win.fill(black, (50, 50, 400, 400))
+        pygame.display.flip()
+        
         # if player lands on special space, they receive $100
         if player4.colliderect(special):
             p4['$'] += 100
@@ -510,7 +553,8 @@ def stage_1():
             win.blit(text, (130, 120))
             text = font.render(str(p4['$']), True, white)
             win.blit(text, (130, 150))
-        pygame.display.flip()
+            pygame.display.flip()
+        wait(4)
 
 
 while True:
