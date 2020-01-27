@@ -238,6 +238,7 @@ def stage_0():
     pygame.display.flip()
     # get number of players
     player_num()
+    return
 
 
 # stage 1 is game stage
@@ -558,6 +559,7 @@ def stage_1():
             win.blit(text, (130, 150))
             pygame.display.flip()
         wait(4)
+    return
 
 
 while True:
