@@ -566,57 +566,56 @@ while True:
             sys.exit()
         if state == 0:
             stage_0()
-        if state == 1:
+        else:
             stage_1()
-
-        '''if someone reaches $2000
-        the closing screen will display and then quit'''
-        if p1['$'] or p2['$'] or p3['$'] or p4['$'] == 2000:
-            win.fill(black)
-            font = pygame.font.SysFont('Arial', 20)
-            # display player 1's money
-            text = font.render('Player 1:', True, white)
-            win.blit(text, (130, 120))
-            text = font.render(str(p1['$']), True, white)
-            win.blit(text, (200, 120))
-            # display player 2's money
-            text = font.render('Player 2:', True, white)
-            win.blit(text, (130, 140))
-            text = font.render(str(p2['$']), True, white)
-            win.blit(text, (200, 140))
-            if num == 3 or num == 4:
-                # display player 3's money
-                text = font.render('Player 3:', True, white)
-                win.blit(text, (130, 160))
-                text = font.render(str(p3['$']), True, white)
-                win.blit(text, (200, 160))
-            if num == 4:
-                # display player 4's money
-                text = font.render('Player 4:', True, white)
-                win.blit(text, (130, 180))
-                text = font.render(str(p4['$']), True, white)
-                win.blit(text, (200, 180))
-            pygame.display.flip()
-            wait(5)
-            win.fill(black)
-            # whoever has at least $2000 wins
-            if p1['$'] >= 2000:
-                text = font.render('Player 1 wins', True, white)
+            '''if someone reaches $2000
+            the closing screen will display and then quit'''
+            if p1['$'] or p2['$'] or p3['$'] or p4['$'] == 2000:
+                win.fill(black)
+                font = pygame.font.SysFont('Arial', 20)
+                # display player 1's money
+                text = font.render('Player 1:', True, white)
                 win.blit(text, (130, 120))
-            if p2['$'] >= 2000:
-                text = font.render('Player 2 wins', True, white)
+                text = font.render(str(p1['$']), True, white)
+                win.blit(text, (200, 120))
+                # display player 2's money
+                text = font.render('Player 2:', True, white)
+                win.blit(text, (130, 140))
+                text = font.render(str(p2['$']), True, white)
+                win.blit(text, (200, 140))
+                if num == 3 or num == 4:
+                    # display player 3's money
+                    text = font.render('Player 3:', True, white)
+                    win.blit(text, (130, 160))
+                    text = font.render(str(p3['$']), True, white)
+                    win.blit(text, (200, 160))
+                if num == 4:
+                    # display player 4's money
+                    text = font.render('Player 4:', True, white)
+                    win.blit(text, (130, 180))
+                    text = font.render(str(p4['$']), True, white)
+                    win.blit(text, (200, 180))
+                pygame.display.flip()
+                wait(5)
+                win.fill(black)
+                # whoever has at least $2000 wins
+                if p1['$'] >= 2000:
+                    text = font.render('Player 1 wins', True, white)
+                    win.blit(text, (130, 120))
+                if p2['$'] >= 2000:
+                    text = font.render('Player 2 wins', True, white)
+                    win.blit(text, (130, 120))
+                if p3['$'] >= 2000:
+                    text = font.render('Player 3 wins', True, white)
+                    win.blit(text, (130, 120))
+                if p4['$'] >= 2000:
+                    text = font.render('Player 4 wins', True, white)
+                    win.blit(text, (130, 120))
+                pygame.display.flip()
+                wait(5)
+                font = pygame.font.Sysfont('Arial', 60)
+                text = font.render('Game over', True, white)
                 win.blit(text, (130, 120))
-            if p3['$'] >= 2000:
-                text = font.render('Player 3 wins', True, white)
-                win.blit(text, (130, 120))
-            if p4['$'] >= 2000:
-                text = font.render('Player 4 wins', True, white)
-                win.blit(text, (130, 120))
-            pygame.display.flip()
-            wait(5)
-            font = pygame.font.Sysfont('Arial', 60)
-            text = font.render('Game over', True, white)
-            win.blit(text, (130, 120))
-            pygame.display.flip()
-            wait(5)
-            sys.exit()
+                pygame.display.flip()
+                wait(5)
+                sys.exit()
