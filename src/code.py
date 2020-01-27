@@ -227,7 +227,7 @@ def stage_0():
     title()
     # update display
     pygame.display.flip()
-    # wait 1 second
+    # wait 3 second
     wait(3)
     # "erases" title
     win.fill(black, (100, 100, 300, 300))
@@ -554,6 +554,7 @@ while True:
             pygame.display.flip()
             wait(5)
             win.fill(black)
+            # whoever has at least $2000 wins
             if p1['$'] >= 2000:
                 text = font.render('Player 1 wins', True, white)
                 win.blit(text, (130, 120))
