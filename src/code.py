@@ -153,7 +153,7 @@ def player_num():
     global player2
     global player3
     global player4
-    global click
+    global state
     global num
 
     font = pygame.font.SysFont('Arial', 20)
@@ -187,7 +187,7 @@ def player_num():
             num = 2
             pygame.draw.rect(win, blue, player1)
             pygame.draw.rect(win, red, player2)
-            click = True
+            state += 1
             # erases player buttons
             win.fill(black, (50, 50, 400, 400))
             # update display
@@ -199,7 +199,7 @@ def player_num():
             pygame.draw.rect(win, blue, player1)
             pygame.draw.rect(win, red, player2)
             pygame.draw.rect(win, green, player3)
-            click = True
+            state += 1
             # erases player buttons
             win.fill(black, (50, 50, 400, 400))
             # update display
@@ -212,7 +212,7 @@ def player_num():
             pygame.draw.rect(win, red, player2)
             pygame.draw.rect(win, green, player3)
             pygame.draw.rect(win, purple, player4)
-            click = True
+            state += 1
             # erases player buttons
             win.fill(black, (50, 50, 400, 400))
             # update display
@@ -564,8 +564,6 @@ while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()
-        if click is True:
-            state = 1
         if state == 0:
             stage_0()
         if state == 1:
@@ -621,4 +619,4 @@ while True:
             win.blit(text, (130, 120))
             pygame.display.flip()
             wait(5)
-            event.type = pygame.QUIT
+            sys.exit()
