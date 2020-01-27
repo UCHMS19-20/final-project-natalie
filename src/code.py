@@ -251,6 +251,7 @@ def stage_1():
     global direction_2
     global direction_3
     global direction_4
+    global num
     wait(3)
     font = pygame.font.SysFont('Arial', 20)
 
