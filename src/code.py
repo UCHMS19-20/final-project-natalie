@@ -115,29 +115,13 @@ def title():
 
 
 # player 1
-p1 = {
-    'x': 0,
-    'y': 0,
-    '$': 0
-}
+p1 = {'x': 0, 'y': 0, '$': 0}
 # player 2
-p2 = {
-    'x': 20,
-    'y': 0,
-    '$': 0
-}
+p2 = {'x': 20, 'y': 0, '$': 0}
 # player 3
-p3 = {
-    'x': 0,
-    'y': 20,
-    '$': 0
-}
+p3 = {'x': 0, 'y': 20, '$': 0}
 # player 4
-p4 = {
-    'x': 20,
-    'y': 20,
-    '$': 0
-}
+p4 = {'x': 20, 'y': 20, '$': 0}
 
 p_width = 10
 p_height = 10
@@ -231,7 +215,7 @@ def stage_0():
     # update display
     pygame.display.flip()
     # wait 3 second
-    wait(5)
+    wait(3)
     # "erases" title
     win.fill(black, (100, 100, 300, 300))
     # update display
